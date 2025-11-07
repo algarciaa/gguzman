@@ -1,8 +1,10 @@
 def gestor_notas_avanzado():
-    print("GESTOR DE NOTAS AVANZADO")
+    print("NOTAS ESTUDIANTES")
+    print("")
+
     while True:
         try:
-            num_estudiantes = int(input("Ingrese la cantidad de estudiantes a registrar: "))
+            num_estudiantes = int(input("Ingrese la cantidad de ESTUDIANTES a registrar: "))
             if num_estudiantes > 0:
                 break
             else:
@@ -12,7 +14,7 @@ def gestor_notas_avanzado():
     
     while True:
         try:
-            numNotas = int(input("\nIngrese la cantidad de estudiantes a registrar: "))
+            numNotas = int(input("Ingrese la cantidad de NOTAS a registrar: "))
             if numNotas> 0:
                 break
             else:
@@ -23,10 +25,9 @@ def gestor_notas_avanzado():
     nombres = []
     promedios = []
     
-    print(f"REGISTRANDO {num_estudiantes} ESTUDIANTES ")
-
     for i in range(num_estudiantes):
-        print(f"\n[Estudiante #{i + 1}]")
+        print(f"[Estudiante #{i + 1}]")
+
         while True:
             nombre = input("Ingrese el nombre del estudiante: ").strip()
             if nombre:
@@ -35,19 +36,8 @@ def gestor_notas_avanzado():
                 print("El nombre no puede estar vacío.")
         nombres.append(nombre)
 
-    for i in range(numNotas):
-        print(f"\n[Estudiante #{i + 1}]")
-        while True:
-            promedios = input("Ingrese la nota del Estudiante: ").strip()
-            if promedios:
-                break
-            else:
-                print("El nombre no puede estar vacío.")
-        nombres.append(promedios)
-    suma_notas= 0
-    
-    for j in range(numNotas):
-            suma_notas += int(promedios[j])
+        suma_notas = 0
+        for j in range(numNotas):
             while True:
                 try:
                     nota = float(input(f"Ingrese la nota #{j + 1} (0 a 10): "))
@@ -59,14 +49,36 @@ def gestor_notas_avanzado():
                 except ValueError:
                     print("Ingrese un número válido.")
 
+        promedio = suma_notas / numNotas
+        promedios.append(promedio)
 
 
+    aprobados = sum(1 for p in promedios if p >= 7)
+    reprobados = sum(1 for p in promedios if p < 7)
+    
+    print("CALIFICACIONES")
+    print("")
+    
+    
+    
 
-    print("\nESTUDIANTES REGISTRADOS:")
+
+    print("ESTADO DE LOS ESTUDIANTES Y SUS NOTAS:")
     for i in range(num_estudiantes):
-        print(f"\n[Estudiante #{i + 1}]")
+        print("")
+        print(f"[Estudiante #{i + 1}]")
         print(f"Nombre: {nombres[i]}")
         print(f"Promedio: {promedios[i]}")
+        if promedios[i] >= 7:
+            print("Estado: APROBADO")
+            print("")
+        else:
+            print("Estado: REPROBADO")
+    print("")   
+    print(f"ESTUDIANTES REPROBADOS: {aprobados}")
+    print(f"ESTUDIANTES APROBADOS: {reprobados}")
+    
+
 
 
 
